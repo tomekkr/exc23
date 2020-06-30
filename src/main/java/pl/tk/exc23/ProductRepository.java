@@ -26,7 +26,7 @@ public class ProductRepository {
     }
 
     public List<Product> getProducts() {
-        return products;
+        return new ArrayList<>(products);
     }
 
     public List<Product> getProductsFromCategory(String category, List<Product> products) {
