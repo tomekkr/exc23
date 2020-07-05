@@ -9,11 +9,35 @@
 <body>
 <div>
     <h3 th:text="|Wybierz kategorię produktów:|"></h3>
-    <div th:each="category: ${productCategories}"><a th:href="@{|/lista?kategoria=${category}|}">
-        <p th:text="${category}"></p>
+    <div th:each="category: ${categories}"><a th:href="@{|/lista?kategoria=${category}|}">
+        <p th:text="${category.description}"></p>
     </a>
     </div>
     <div><a th:href="@{|/lista?kategoria=|}"><p th:text="|wszystkie produkty|"></p></a></div>
+</div>
+<br/>
+<div>
+    <h3 th:text="|Dodawanie produktu:|"></h3>
+    <form action="/add" method="post" th:object="${newProduct}">
+        <div class="row">
+            <div class="col-md-2">
+                <input type="text" class="form-control" minlength="2" required="required" placeholder="Nazwa produktu"
+                       th:field="*{name}"/>
+            </div>
+            <div class="col-md-1">
+                <input type="number" class="form-control" min="0.01" required="required" placeholder="Cena"/>
+            </div>
+            <div class="col-md-2">
+                <select class="form-control" th:field="*{category}">
+                    <option th:each="category: ${categories}" th:value="${category}"
+                            th:text="|art. ${category.description}|"></option>
+                </select>
+            </div>
+            <div class="col-md-1">
+                <button type="submit" class="btn btn-primary">Dodaj</button>
+            </div>
+        </div>
+    </form>
 </div>
 </body>
 </html>

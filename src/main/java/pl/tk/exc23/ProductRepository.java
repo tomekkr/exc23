@@ -29,17 +29,24 @@ public class ProductRepository {
         return new ArrayList<>(products);
     }
 
-    public List<Product> getProductsFromCategory(String category, List<Product> products) {
-        return products.stream()
-                .filter(product -> product.getCategory().getDescription().toLowerCase().equals(category.toLowerCase()))
-                .collect(Collectors.toList());
+    public List<Product> getProductsFromCategory(Category category) {
+        if (category == null) {
+            return getProducts();
+        } else {
+            return products.stream()
+                    .filter(product -> product.getCategory().equals(category))
+                    .collect(Collectors.toList());
+        }
     }
 
-    public double sumPrices(String category) {
-        List<Product> filteredProducts = getProductsFromCategory(category, products);
+    public void addProduct(Product product) {
+        products.add(product);
+    }
+
+    public double sumPrices(List<Product> productsList) {
         double sum = 0;
-        for (Product filteredProduct : filteredProducts) {
-            sum += filteredProduct.getPrice();
+        for (Product product : productsList) {
+            sum += product.getPrice();
         }
         return sum;
     }

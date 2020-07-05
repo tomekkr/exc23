@@ -21,7 +21,12 @@
         <tr th:each="product:${productsList}">
             <td th:text="|${product.name}|"></td>
             <td th:text="|${product.price}|"></td>
-            <td th:text="|${product.category.getDescription()}|"></td>
+            <td th:text="|${product.category.description}|"></td>
+        </tr>
+        <tr class="table-active">
+            <td th:text="Suma"></td>
+            <td th:text="${sum}"></td>
+            <td></td>
         </tr>
         </tbody>
     </table>
