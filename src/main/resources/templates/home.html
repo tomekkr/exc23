@@ -25,7 +25,7 @@
                        th:field="*{name}"/>
             </div>
             <div class="col-md-1">
-                <input type="number" class="form-control" min="0.01" required="required" placeholder="Cena"/>
+                <input type="number" class="form-control" min="0.01" required="required" placeholder="Cena" th:field="*{price}"/>
             </div>
             <div class="col-md-2">
                 <select class="form-control" th:field="*{category}">
